@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trinetra</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>TRINETRA</h1>
+    <p class="tagline">Cyber Threat Analysis Platform</p>
+
+    <div class="tabs">
+        <button onclick="showSection('url')">URL SCAN</button>
+        <button onclick="showSection('email')">EMAIL SCAN</button>
+        <button onclick="showSection('file')">FILE SCAN</button>
+    </div>
+
+    <div id="url" class="section">
+        <input type="text" id="urlInput"
+               placeholder="Example: http://secure-login-bank-update.xyz">
+        <button onclick="scanURL()">Scan URL</button>
+    </div>
+
+    <div id="email" class="section hidden">
+        <textarea id="emailInput"
+                  placeholder="From: PayPal Support (alert@gmail.com)
+Reply-To: scammer@fraud.com
+Subject: Urgent! Verify your account"></textarea>
+        <button onclick="scanEmail()">Scan Email</button>
+    </div>
+
+    <div id="file" class="section hidden">
+        <input type="file" id="fileInput">
+        <small class="hint">Examples: invoice.pdf, setup.exe, report.docm</small>
+        <button onclick="scanFile()">Scan File</button>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" class="result hidden"></div>
+
+    <!-- ACTION ADVICE -->
+    <div id="advice" class="result hidden"></div>
+
+    <!-- REPORT DOWNLOAD -->
+    <button id="downloadBtn" class="hidden" onclick="downloadReport()">
+        Download Scan Report
+    </button>
+
+    <!-- SCAN HISTORY -->
+    <div class="result">
+        <strong>Recent Scans (Session Only)</strong>
+        <ul id="history"></ul>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
